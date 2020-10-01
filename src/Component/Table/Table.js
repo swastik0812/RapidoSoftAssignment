@@ -34,6 +34,11 @@ async function createData(row) {
 
     for(let i=0;i<row.tripLists.length;i++){
         totalKm=totalKm+parseInt(row.tripLists[i].totalKm);
+        let dRow=row;
+       let t=dRow.tripLists[i].tripRunningTime;
+       let dT=new Date(parseInt(t))
+       dRow.tripLists[i].tripRunningTime=dT.getUTCHours()+" hrs "+dT.getUTCMinutes()+" min"
+        row.tripLists[i].tripRunningTime=dRow.tripLists[i].tripRunningTime
     }
     let startD =new Date(parseInt(row.startDay))
     let endD =new Date(parseInt(row.endDay))
