@@ -38,6 +38,8 @@ async function createData(row) {
     let startD =new Date(parseInt(row.startDay))
     let endD =new Date(parseInt(row.endDay))
     let runTime =new Date(parseInt(row.dailyRunningTime))
+    let month1=startD.getUTCMonth()+1;
+    let month2=endD.getUTCMonth()+1;
     let a="";
     if(startD.getUTCHours()<12){
         a="AM"
@@ -50,8 +52,8 @@ async function createData(row) {
     }else{
         b="PM"
     }
-    startDate=startD.getUTCDate()+"/"+startD.getMonth()+1+"/"+startD.getUTCFullYear()+" at " +startD.getUTCHours()+":"+startD.getUTCMinutes()+a ;
-    endDate=endD.getUTCDate()+"/"+endD.getMonth()+1+"/"+endD.getUTCFullYear()+" at " +endD.getHours()+":"+endD.getMinutes()+b;
+    startDate=startD.getUTCDate()+"/"+month1+"/"+startD.getUTCFullYear()+" at " +startD.getUTCHours()+":"+startD.getUTCMinutes()+a ;
+    endDate=endD.getUTCDate()+"/"+month2+"/"+endD.getUTCFullYear()+" at " +endD.getHours()+":"+endD.getMinutes()+b;
     finalString= "Date: "+startDate+" - "+endDate + "("+ runTime.getUTCHours()+" Hrs "+runTime.getUTCMinutes()+" Minutes)";
     return {
         Date:finalString,
