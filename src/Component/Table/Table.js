@@ -38,16 +38,6 @@ async function createData(row) {
     let startD =new Date(parseInt(row.startDay))
     let endD =new Date(parseInt(row.endDay))
     let runTime =new Date(parseInt(row.dailyRunningTime))
-console.log(runTime.getUTCHours())
-
-    console.log(startD)
-    console.log(startD.getUTCDate())
-    console.log(endD.getUTCDate())
-
-    console.log(startD.getUTCMonth())
-    console.log(startD.getUTCFullYear())
-    console.log(startD.getUTCHours())
-    console.log(startD.getUTCMinutes())
     let a="";
     if(startD.getUTCHours()<12){
         a="AM"
@@ -61,12 +51,8 @@ console.log(runTime.getUTCHours())
         b="PM"
     }
     startDate=startD.getUTCDate()+"/"+startD.getMonth()+1+"/"+startD.getUTCFullYear()+" at " +startD.getUTCHours()+":"+startD.getUTCMinutes()+a ;
-    console.log(startDate)
     endDate=endD.getUTCDate()+"/"+endD.getMonth()+1+"/"+endD.getUTCFullYear()+" at " +endD.getHours()+":"+endD.getMinutes()+b;
-    console.log(endDate)
-    finalString=startDate+" - "+endDate + "("+ runTime.getUTCHours()+" Hrs "+runTime.getUTCMinutes()+" Minutes)";
-    console.log(finalString)
-
+    finalString= "Date: "+startDate+" - "+endDate + "("+ runTime.getUTCHours()+" Hrs "+runTime.getUTCMinutes()+" Minutes)";
     return {
         Date:finalString,
         TotalKm:totalKm
@@ -77,10 +63,7 @@ function Row(props) {
   const { row } = props;
   const [open, setOpen] = React.useState(true);
   const [res, setRes] = React.useState(false);
-
   const classes = useRowStyles();
-    console.log(row)
-    
 
     useEffect(async()=>{
         let res=await createData(row);
@@ -182,15 +165,11 @@ function Row(props) {
 
 export default function CollapsibleTable(props) {
   const [rows, setRows] = useState([]);
-
-    console.log(props.TripDetails)
-
     const makeData = async()=>{
        return await setRows(props.TripDetails)
     }
      useEffect(async()=>{
        await makeData();
-        console.log(rows)
     },[])
 
   return (
